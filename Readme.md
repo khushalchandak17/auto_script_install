@@ -30,18 +30,22 @@ This will clone the repository and make the necessary sub-scripts executable, al
 This will perform the following set of tasks:
 
 1. Install Ubuntu Dependencies
-2. Install Rancher Manager Using Helm
-3. Install Rancher Manager Using Docker
-4. Install RKE
-5. Install RKE2
-6. Install k3s
-7. Install kubectl
-8. Deploy DNS Server
-9. Uninstall All
-10. Create RKE2 Config
-11. Deploy Private Image Registry
-12. Install Docker
-13. Install Helm
-14. Exit
+2. Install CenOs-dependencies
+3. Install Fedora or other OS dependencies
+4. Install Rancher Manager Using Helm
+5. Install Rancher Manager Using Docker
+6. Install RKE
+7. Install RKE2
+8. Install k3s
+9. Install kubectl
+10. Deploy DNS Server
+11. Uninstall All
+12. Create RKE2 Config
+13. Deploy Private Image Registry
+14. Install Docker
+15. Install Helm
+16. Configure HA-Proxy or Nginx
+17. Configure proxy usqing Squid
+18. Exit
 
 Make sure to review the script documentation for any additional details or customization options for each task.
