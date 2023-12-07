@@ -1,3 +1,5 @@
+#!/bin/bash
+install_rke2() {
 clear
 
 architecture=$(uname -m)
@@ -42,7 +44,7 @@ for i in $(kubectl get deploy -n kube-system --no-headers | awk '{print $1}'); d
 
 sleep 2
 
-
+}
 
 # Function to display menu for all avaialble RKE2 version and get user's choice
 function get_rke2_version {
@@ -71,3 +73,4 @@ function get_rke2_version {
     RKE2_VERSION=$VERSION
   fi
 }
+install_rke2
