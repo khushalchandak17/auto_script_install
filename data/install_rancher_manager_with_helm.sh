@@ -69,3 +69,5 @@ get_rancher_version () {
     RANCHER_VERSION=$VERSION
   fi
 }
+
+install_rancher
