@@ -1,4 +1,6 @@
-clear
+#!/bin/bash
+install_rke() {
+  clear
   echo -e "Installing RKE... \n Fetching all the avaialble version from upstream \n \n"
   # Add your installation logic for RKE here
   get_rke_version
@@ -36,7 +38,7 @@ fi
 kubectl cluster-info
 kubectl get nodes
 kubectl get cs
-
+}
 
 function ssh_config_rke {
 
@@ -112,4 +114,4 @@ function get_rke_version {
     RKE_VERSION=$VERSION
   fi
 }
-
+install_rke
