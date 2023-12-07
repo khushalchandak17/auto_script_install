@@ -1,4 +1,4 @@
-#!bin/bash
+#!/bin/bash
 configure_ubuntu() {
   echo "Configuring Ubuntu OS for Rancher Ready..."
 # Ubuntu instructions
