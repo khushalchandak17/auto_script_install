@@ -46,6 +46,8 @@ This will perform the following set of tasks:
 15. Install Helm
 16. Configure HA-Proxy or Nginx
 17. Configure proxy usqing Squid
-18. Exit
+18. Install containerd
+19. install cri-o
+20. Exit
 
 Make sure to review the script documentation for any additional details or customization options for each task.
