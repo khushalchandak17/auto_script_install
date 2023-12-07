@@ -1,5 +1,7 @@
- clear
-  echo -e "Installing  kubectl... \n Fetching all the avaialble version from upstream \n \n"
+#!/bin/bash
+install_kubectl() {
+  clear
+  echo -e "Installing Helm/kubectl... \n Fetching all the avaialble version from upstream \n \n"
 
   get_kubectl_version
   echo "Installing Kubectl $KUBECTL_VERSION"
@@ -19,7 +21,7 @@ fi
   install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
   kubectl version --client
   sleep 5
-
+}
 
 get_kubectl_version () {
   # Get list of available kubectl versions from GitHub API
@@ -49,3 +51,4 @@ get_kubectl_version () {
     KUBECTL_VERSION=$VERSION
   fi
 }
+install_kubectl
