@@ -24,4 +24,24 @@ To run this project locally, follow these steps:
     ./auto_script_install/main.sh
     ```
 
-This will clone the repository and make the necessary sub-scripts executable, allowing you to run the main installation script. Make sure to check the specific requirements and prerequisites for your project in the documentation.
+This will clone the repository and make the necessary sub-scripts executable, allowing you to run the main installation script.
+
+
+This will perform the following set of tasks:
+
+1. Install Ubuntu Dependencies
+2. Install Rancher Manager Using Helm
+3. Install Rancher Manager Using Docker
+4. Install RKE
+5. Install RKE2
+6. Install k3s
+7. Install kubectl
+8. Deploy DNS Server
+9. Uninstall All
+10. Create RKE2 Config
+11. Deploy Private Image Registry
+12. Install Docker
+13. Install Helm
+14. Exit
+
+Make sure to review the script documentation for any additional details or customization options for each task.
