@@ -1,5 +1,8 @@
-
 #!/bin/sh
+if [ "$(id -u)" != "0" ]; then
+  echo "This script must be run as root" 1>&2
+  exit 1
+fi
 
 # Get the full path to the directory containing this script
 SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
