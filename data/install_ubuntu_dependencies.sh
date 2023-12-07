@@ -1,4 +1,6 @@
-echo "Configuring Ubuntu OS for Rancher Ready..."
+#!bin/bash
+configure_ubuntu() {
+  echo "Configuring Ubuntu OS for Rancher Ready..."
 # Ubuntu instructions
 # stop the software firewall
 systemctl disable --now ufw
@@ -12,3 +14,6 @@ apt upgrade -y
 apt-mark unhold linux-image-*
 # clean up
 apt autoremove -y
+
+}
+configure_ubuntu
