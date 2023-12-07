@@ -1,3 +1,5 @@
+#!/bin/bash
+install_rancher() {
 clear
 echo -e "Installing Rancher Manager using Helm... \n Fetching all the avaialble version from upstream \n \n"
 get_rancher_version
@@ -45,6 +47,7 @@ kubectl get pods -A
 # Verify Rancher installation
 kubectl -n cattle-system rollout status deploy/rancher
 
+}
 
 get_rancher_version () {
   # Get list of available Rancher versions from GitHub API
@@ -66,5 +69,3 @@ get_rancher_version () {
     RANCHER_VERSION=$VERSION
   fi
 }
-
-
