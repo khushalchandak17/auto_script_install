@@ -8,13 +8,38 @@ check_docker() {
     if [ "$INSTALL_DOCKER" == "y" ]; then
       echo "Installing Docker..."
       # Assuming the install-docker.sh script is in the same directory
-      ./install_docker..sh
+       execute_script "install_docker.sh
     else
       echo "Exiting script. Docker is required for this operation."
       exit 1
     fi
   fi
 }
+
+execute_script() {
+  echo -e "this is test $SCRIPT_DIR"
+  script_name=$1
+  script_path="$SCRIPT_DIR/data/$script_name"
+
+  echo; echo
+  # Check if the script is present and executable
+  if [ -f "$script_path" ]; then
+    if [ -x "$script_path" ]; then
+      echo "Executing $script_name..."
+      sleep 1
+      bash "$script_path"
+    else
+      echo "Error: The script $script_path is not executable."
+      echo "Please ensure it has the execute permission."
+    fi
+  else
+    echo "Error: $script_name is not present. Feature not integrated."
+  fi
+
+  # Display empty lines after executing the script
+  sleep 2
+}
+
 
 # Check if Docker is installed and running
 check_docker
