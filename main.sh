@@ -6,6 +6,7 @@ fi
 
 # Get the full path to the directory containing this script
 SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
+export SCRIPT_DIR
 
 main() {
   while true; do
