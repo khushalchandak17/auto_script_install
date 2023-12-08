@@ -115,25 +115,33 @@ function get_rke_version {
   VERSIONS_URL="https://api.github.com/repos/rancher/rke/releases"
   VERSIONS=$(curl -s $VERSIONS_URL | grep '"tag_name":' | cut -d '"' -f 4 | sort -rV)
 
-  # Add "Latest" option to the list
-  VERSIONS="Latest $VERSIONS"
+  # Add "Latest" and "Other" options to the list
+  VERSIONS="Latest Other $VERSIONS"
 
   # Display menu of available versions
-  echo -e "Please select an RKE version to install or use option 1 for the latest stable version : \n"
+  echo -e "Please select an RKE version to install or choose 'Other' to enter a specific version: \n"
   select VERSION in $VERSIONS; do
     if [ -n "$VERSION" ]; then
       break
     fi
   done
 
-  # Check if "Latest" option was selected
-  if [ "$VERSION" = "Latest" ]; then
-    # Fetch the latest version from the GitHub API
-    LATEST_VERSION=$(curl -s $VERSIONS_URL | grep '"tag_name":' | cut -d '"' -f 4 | head -n 1)
-    RKE_VERSION=$LATEST_VERSION
-  else
-    # Set RKE_VERSION variable to the selected version
-    RKE_VERSION=$VERSION
-  fi
+  # Check if "Latest" or "Other" option was selected
+  case $VERSION in
+    "Latest")
+      # Fetch the latest version from the GitHub API
+      LATEST_VERSION=$(curl -s $VERSIONS_URL | grep '"tag_name":' | cut -d '"' -f 4 | head -n 1)
+      RKE_VERSION=$LATEST_VERSION
+      ;;
+    "Other")
+      # Prompt the user to enter a specific version
+      read -p "Enter the RKE version you want to install: " CUSTOM_VERSION
+      RKE_VERSION=$CUSTOM_VERSION
+      ;;
+    *)
+      # Set RKE_VERSION variable to the selected version
+      RKE_VERSION=$VERSION
+      ;;
+  esac
 }
 install_rke
