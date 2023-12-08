@@ -79,6 +79,11 @@ show_menu() {
   echo "   24. Rancher on RKE"
   echo "   25. Rancher on RKE2"
   echo "   26. Rancher on K3s"
+  echo "J. Log data collector"
+  echo "   26. Log collection"
+  echo "   27. Rancher Log collection"
+  echo "   28. Tcpdump on host"
+  echo "   29. Tcpdump Inside containers"
   read -p "Enter your choice [1-20]: " choice
 }
 
