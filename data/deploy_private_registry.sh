@@ -8,7 +8,7 @@ check_docker() {
     if [ "$INSTALL_DOCKER" == "y" ]; then
       echo "Installing Docker..."
       # Assuming the install-docker.sh script is in the same directory
-       execute_script "install_docker.sh
+       execute_script "install_docker.sh"
     else
       echo "Exiting script. Docker is required for this operation."
       exit 1
