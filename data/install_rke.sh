@@ -1,4 +1,15 @@
 #!/bin/bash
+
+validate_url() {
+  local url=$1
+  if wget --spider "$url" 2>/dev/null; then
+    return 0  # URL is reachable
+  else
+    return 1  # URL is not reachable
+  fi
+}
+
+
 install_rke() {
   clear
   echo -e "Installing RKE... \n Fetching all the avaialble version from upstream \n \n"
@@ -18,6 +29,17 @@ else
 fi
 
   RKE_DOWNLOAD_URL="https://github.com/rancher/rke/releases/download/$RKE_VERSION/$RKE_arc"
+
+  if ! validate_url "$RKE_DOWNLOAD_URL"; then
+    echo "Invalid URL: $RKE_DOWNLOAD_URL"
+    sleep 2
+    echo " Verify RKE Version i.e  $RKE_VERSION"
+    sleep 5
+    install_rke
+    #exit 1
+  fi
+ 
+  
   curl -LO $RKE_DOWNLOAD_URL
   sudo install $RKE_arc /usr/local/bin/rke
 
