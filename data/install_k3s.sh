@@ -2,7 +2,7 @@
 
 install_k3s() {
   clear
-  echo -e "Installing k3s... \n Fetching all the available versions from upstream \n \n"
+  echo -e "Installing k3s... \nFetching latest available versions \n \n"
   get_k3s_version
   echo "$K3S_VERSION"
   sleep 2
@@ -87,5 +87,7 @@ function get_k3s_version {
       ;;
   esac
 }
-
+clear
+echo "Installing k3s..."
+sleep 2
 install_k3s
