@@ -12,7 +12,7 @@ validate_url() {
 
 install_rke() {
   clear
-  echo -e "Installing RKE... \n Fetching all the avaialble version from upstream \n \n"
+  echo -e "Installing RKE... \n Fetching latest avaialble versions \n \n"
   # Add your installation logic for RKE here
   get_rke_version
   echo "$RKE_VERSION"
@@ -144,4 +144,8 @@ function get_rke_version {
       ;;
   esac
 }
+clear
+echo "Installing RKE..."
+sleep 2
+
 install_rke
