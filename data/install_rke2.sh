@@ -101,9 +101,11 @@ function get_rke2_version {
 
         # Validate the entered version
         if ! validate_url "$CUSTOM_VERSION"; then
-          echo "Version not found: $CUSTOM_VERSION"
+          echo
+	  echo
+	  echo "Version not found: $CUSTOM_VERSION"
           sleep 2
-          echo " Verify RKE Version i.e  $CUSTOM_VERSION"
+          echo "Verify RKE Version i.e  $CUSTOM_VERSION"
           sleep 5
 	  clear
           continue  # Continue the loop to prompt the user again
