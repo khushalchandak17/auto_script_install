@@ -2,15 +2,6 @@
 install_rke2() {
 clear
 
-architecture=$(uname -m)
-
-if [ "$architecture" == "x86_64" ]; then
-    echo "AMD architecture detected. Continuing with AMD-specific actions..."
-    # Add your AMD-specific commands or actions here
-else
-    echo "Unsupported architecture detected. Quitting..."
-    exit 1
-fi
 
 echo -e "Installing RKE2 Server ... \n Fetching all the avaialble version from upstream \n \n"
 # Add your installation logic for RKE2 Server using apt here
@@ -49,8 +40,18 @@ sleep 2
 # Function to display menu for all avaialble RKE2 version and get user's choice
 function get_rke2_version {
   # Get list of available RKE2 versions from GitHub API
-  VERSIONS_URL="https://api.github.com/repos/rancher/rke2/releases"
+architecture=$(uname -m)
+VERSIONS_URL="https://api.github.com/repos/rancher/rke2/releases"
+
+if [ "$architecture" == "x86_64" ] || [ "$architecture" == "amd64" ]; then
   VERSIONS=$(curl -s $VERSIONS_URL | grep '"tag_name":' | cut -d '"' -f 4 | sort -rV)
+elif [ "$architecture" == "arm" ] || [ "$architecture" == "aarch64" ]; then
+  VERSIONS=$(curl -s $VERSIONS_URL | grep '"tag_name":' | cut -d '"' -f 4 | grep -E '^v(1\.27\.|1\.28\.)' | sort -rV)
+else
+  echo "Unsupported architecture '$architecture' detected. Quitting..."
+  exit 1
+fi
+
 
   # Add "Latest" option to the list
   VERSIONS="Latest $VERSIONS"
