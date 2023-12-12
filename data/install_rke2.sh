@@ -1,7 +1,7 @@
 install_rke2() {
   clear
 
-  echo -e "Installing RKE2 Server ... \nFetching all the available versions from upstream \n \n"
+  echo -e "Installing RKE2 Server ... \nFetching latest available versions  \n \n"
   # Add your installation logic for RKE2 Server using apt here
   get_rke2_version
   echo "$RKE2_VERSION"
@@ -123,6 +123,9 @@ function get_rke2_version {
     esac
   done
 }
+clear
+echo "Installing Rke2..."
+sleep 2
 
 
 install_rke2
