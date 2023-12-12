@@ -13,6 +13,19 @@ apt install nfs-common curl -y
 apt upgrade -y
 apt-mark unhold linux-image-*
 # clean up
+
+#Install curl
+sudo apt install -y curl
+
+# Install jq
+sudo apt install -y jq
+
+# Install yq
+sudo add-apt-repository ppa:rmescandon/yq
+sudo apt update
+sudo apt install -y yq
+
+
 apt autoremove -y
 
 }
