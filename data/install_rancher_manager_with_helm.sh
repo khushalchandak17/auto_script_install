@@ -39,6 +39,8 @@ install_rancher() {
 
   # Verify Rancher installation
   kubectl -n cattle-system rollout status deploy/rancher
+  kubectl -n cattle-fleet-system rollout status deploy/gitjob
+  kubectl -n cattle-fleet-system rollout status deploy/fleet-controller
 }
 
 get_rancher_version() {
