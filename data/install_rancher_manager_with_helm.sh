@@ -26,7 +26,8 @@ install_rancher() {
   read -p "Enter your hostname: " hostname_rancher
   echo "Your provided hostname is $hostname_rancher"
 
-  read -p "Password: " password_rancher
+  #read -p "Password: " password_rancher
+  read -p "Password [default=password]: " -i "password" password_rancher
 
   # To install a specific version of Rancher
   # Get Rancher version first
