@@ -49,9 +49,13 @@ get_rancher_version() {
   VERSIONS=$(curl -s $VERSIONS_URL | grep '"tag_name":' | cut -d '"' -f 4 | grep -v 'alpha\|beta' | sort -rV)
 
   # Display menu of available versions
-  echo -e "Please select a Rancher version to install or use option 1 for the latest stable version: \n"
-  select VERSION in "latest" $VERSIONS; do
-    if [ -n "$VERSION" ]; then
+  echo -e "Please select a Rancher version to install, use option 1 for the latest stable version, or select 'other' to input a custom version: \n"
+  select VERSION in "latest" "other" $VERSIONS; do
+    if [ "$VERSION" = "other" ]; then
+      read -p "Enter custom version: " CUSTOM_VERSION
+      RANCHER_VERSION=$CUSTOM_VERSION
+      break
+    elif [ -n "$VERSION" ]; then
       break
     fi
   done
@@ -59,7 +63,7 @@ get_rancher_version() {
   # Set RANCHER_VERSION variable
   if [ "$VERSION" = "latest" ]; then
     RANCHER_VERSION=$(curl -s $VERSIONS_URL | grep '"tag_name":' | cut -d '"' -f 4 | grep -v 'alpha\|beta' | head -n 1)
-  else
+  elif [ "$VERSION" != "other" ]; then
     RANCHER_VERSION=$VERSION
   fi
 }
