@@ -71,8 +71,9 @@ show_menu() {
   echo "   19. Configure SSL Cert"
   echo "   20. Install Let's Encrypt"
   echo; echo; echo
+  echo "   21. Install Rancher Prime"
   echo "H. Fetch Data"
-  echo "   21. Fetch Platform Data"
+  echo "   2X. Fetch Platform Data"
   echo "   22. Fetch kubernetes cluster info"
   echo "   23. Fetch kubernetes data"
   echo "I. Quick Rancher Deploy"
@@ -114,6 +115,7 @@ main() {
       18) execute_script "deploy_lb_traefik.sh" ;;
       19) execute_script "configure_ssl_cert.sh" ;;
       20) execute_script "install_lets_encrypt.sh" ;;
+      21) execute_script "install_rancher_prime.sh" ;;
       *) invalid ;;
     esac
   done
