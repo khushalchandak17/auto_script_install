@@ -30,13 +30,13 @@ install_rancher() {
   #read -p "Password [default=password]: " -i "password" password_rancher
 
   read -p "Password (default: password): " password_rancher
-  REGISTRY_FQDN=${password_rancher:-"password"}
+  newpass=${password_rancher:-"password"}
 
   # To install a specific version of Rancher
   # Get Rancher version first
   # helm search repo rancher-latest --versions
 
-  helm upgrade -i rancher rancher-latest/rancher --version $RANCHER_VERSION --create-namespace --namespace cattle-system --set hostname=${hostname_rancher} --set bootstrapPassword=${password_rancher} --set replicas=1
+  helm upgrade -i rancher rancher-latest/rancher --version $RANCHER_VERSION --create-namespace --namespace cattle-system --set hostname=${hostname_rancher} --set bootstrapPassword=${newpass} --set replicas=1
   sleep 5
 
   kubectl get pods -A
