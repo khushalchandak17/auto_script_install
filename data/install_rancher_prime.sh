@@ -29,16 +29,16 @@ kubectl get pods --namespace cert-manager
   #read -p "Password [default=password]: " -i "password" password_rancher
 
   read -p "Password (default: password): " password_rancher
-  REGISTRY_FQDN=${password_rancher:-"password"}
+  newpass=${password_rancher:-"password"}
 
   # To install a specific version of Rancher
   # Get Rancher version first
   # helm search repo rancher-latest --versions
 
   #helm upgrade -i rancher rancher-latest/rancher --version $RANCHER_VERSION --create-namespace --namespace cattle-system --set hostname=${hostname_rancher} --set bootstrapPassword=${password_rancher} --set replicas=1
-helm install rancher rancher-prime/rancher --namespace cattle-system --set hostname=${hostname_rancher} --set rancherImage="registry.rancher.com/rancher/rancher" --set bootstrapPassword=${password_rancher}
-kubectl -n cattle-system rollout status deploy/rancher
-kubectl -n cattle-system get deploy rancher
+  helm install rancher rancher-prime/rancher --version $RANCHER_VERSION --namespace cattle-system --set hostname=${hostname_rancher} --set rancherImage="registry.rancher.com/rancher/rancher" --set bootstrapPassword=${newpass}
+  kubectl -n cattle-system rollout status deploy/rancher
+  kubectl -n cattle-system get deploy rancher
   
   sleep 5
 
