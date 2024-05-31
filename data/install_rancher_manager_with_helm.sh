@@ -1,5 +1,17 @@
 #!/bin/bash
 
+# Function to create FQDN based on the host's primary IP
+generate_fqdn() {
+    # Get the primary IP address of the host
+    local primary_ip=$(hostname -I | awk '{print $1}')
+    
+    # Create the FQDN
+    local fqdn="${primary_ip}.sslip.io"
+    
+    # Return the FQDN
+    echo "$fqdn"
+}
+
 install_rancher() {
   clear
   echo -e "Installing Rancher Manager using Helm... \n Fetching all available versions from upstream \n \n"
@@ -22,12 +34,16 @@ install_rancher() {
   # Helm install jetstack
   helm upgrade -i cert-manager jetstack/cert-manager --namespace cert-manager --create-namespace
 
-  # Installing Rancher Server
-  read -p "Enter your hostname: " hostname_rancher
-  echo "Your provided hostname is $hostname_rancher"
+  fqdn=$(generate_fqdn)
+  echo "The generated FQDN is: $fqdn"
 
-  #read -p "Password: " password_rancher
-  #read -p "Password [default=password]: " -i "password" password_rancher
+  # Prompt the user for a hostname with a default value
+  read -p "Enter your hostname (default: $fqdn): " hostname_rancher1
+  hostname_rancher=${hostname_rancher1:-$fqdn}
+
+  # Display the chosen hostname
+  echo "The hostname for Rancher Server will be: $hostname_rancher"
+
 
   read -p "Password (default: password): " password_rancher
   newpass=${password_rancher:-"password"}
