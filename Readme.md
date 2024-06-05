@@ -2,7 +2,7 @@ Easy Install
 
 This project does automated installaion and helps you with other deployments.
 
-## Getting Started
+### Getting Started
 
 To run this project locally, follow these steps:
 
@@ -51,3 +51,4 @@ This will perform the following set of tasks:
 20. Exit
 
 Make sure to review the script documentation for any additional details or customization options for each task.
+
