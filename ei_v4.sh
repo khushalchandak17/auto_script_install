@@ -67,6 +67,7 @@ show_menu() {
   echo "   16. Deploy LB via HAproxy"
   echo "   17. Deploy LB via Nginx"
   echo "   18. Deploy LB via Traefik"
+  echo "   99. Deploy Sample Webserver"
   echo "G. Certs"
   echo "   19. Configure SSL Cert"
   echo "   20. Install Let's Encrypt"
@@ -116,6 +117,8 @@ main() {
       19) execute_script "configure_ssl_cert.sh" ;;
       20) execute_script "install_lets_encrypt.sh" ;;
       21) execute_script "install_rancher_prime.sh" ;;
+      99) execute_script "deploy_sample_webserver_khushal.sh" ;;
+
       *) invalid ;;
     esac
   done
