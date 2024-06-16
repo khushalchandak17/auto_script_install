@@ -1,0 +1,106 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: khushal
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: haproxy
+  namespace: khushal
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: haproxy
+  template:
+    metadata:
+      labels:
+        app: haproxy
+    spec:
+      containers:
+      - name: haproxy
+        image: haproxy:2.3
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: haproxy-config
+          mountPath: /usr/local/etc/haproxy
+      volumes:
+      - name: haproxy-config
+        configMap:
+          name: haproxy-config
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: haproxy-config
+  namespace: khushal
+data:
+  haproxy.cfg: |
+    global
+        log stdout format raw daemon
+
+    defaults
+        log     global
+        mode    http
+        timeout connect 5000ms
+        timeout client  50000ms
+        timeout server  50000ms
+
+    frontend http_front
+        bind *:80
+        default_backend http_back
+
+    backend http_back
+        balance roundrobin
+        server server1 http-backend-service:80 check
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: haproxy-service
+  namespace: khushal
+spec:
+  selector:
+    app: haproxy
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30009
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: http-backend
+  namespace: khushal
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: http-backend
+  template:
+    metadata:
+      labels:
+        app: http-backend
+    spec:
+      containers:
+      - name: http-backend
+        image: httpd:alpine
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: http-backend-service
+  namespace: khushal
+spec:
+  selector:
+    app: http-backend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
