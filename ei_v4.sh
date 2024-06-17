@@ -57,7 +57,7 @@ show_menu() {
   echo "   9. Install crio"
   echo "   10. Install podman"
   echo "D. Utility"
-  echo "   11. Install kubelet"
+  echo "   11. Install kubectl"
   echo "   12. Install Helm"
   echo "E. Services"
   echo "   13. Deploy DNS Server"
