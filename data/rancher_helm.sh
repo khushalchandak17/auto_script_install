@@ -50,7 +50,7 @@ install_rancher() {
     echo -e "\nFetching cert-manager version..."
     get_cert_manager_version
     echo "Selected cert-manager version: $cert_version"
-    sleep 15
+    sleep 3
 
     echo -e "\nApplying cert-manager CRDs..."
     # Add the cert-manager CRD
