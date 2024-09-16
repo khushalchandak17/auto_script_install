@@ -100,7 +100,7 @@ main() {
       2) execute_script "install_rke2.sh" ;;
       3) execute_script "install_k3s.sh" ;;
       4) execute_script "install_kubernetes.sh" ;;
-      5) execute_script "install_rancher_manager_with_helm.sh" ;;
+      5) execute_script "rancher_helm.sh" ;;
       6) execute_script "install_rancher_manager_with_docker.sh" ;;
       7) execute_script "install_docker.sh" ;;
       8) execute_script "install_containerd.sh" ;;
