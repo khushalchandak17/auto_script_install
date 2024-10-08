@@ -63,6 +63,7 @@ configure_network() {
 1. Create Multus
 2. Create Calico
 3. Create Cilium
+4. Create Flannel
 Enter the option (1/2/3): " network_option
 
     if [ "$network_option" == "1" ]; then
@@ -74,9 +75,13 @@ Enter the option (1/2/3): " network_option
     elif [ "$network_option" == "3" ]; then
         # Add Cilium configuration
         append_to_cni_section "cilium"
+    elif [ "$network_option" == "4" ]; then
+        # Add Cilium configuration
+        append_to_cni_section "flannel"
     else
-        echo "Invalid network option. Please choose 1, 2, or 3."
+        echo "Invalid network option. Please choose 1, 2, 3, or 4."
     fi
+
 }
 
 add_control_plane_node() {
